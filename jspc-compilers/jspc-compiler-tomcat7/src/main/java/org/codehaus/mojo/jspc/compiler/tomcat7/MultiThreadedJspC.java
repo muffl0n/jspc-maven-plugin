@@ -54,8 +54,8 @@ public class MultiThreadedJspC extends JspC {
 	// Logger
 	private static final Log log = LogFactory.getLog(MultiThreadedJspC.class);
 
-	private int threads = 10;
-	private long compilationTimeoutMinutes = 30;
+	private int threads;
+	private int compilationTimeout;
 
 	public int getThreads() {
 		return threads;
@@ -65,12 +65,12 @@ public class MultiThreadedJspC extends JspC {
 		this.threads = threads;
 	}
 
-	public long getCompilationTimeoutMinutes() {
-		return compilationTimeoutMinutes;
+	public long getCompilationTimeout() {
+		return compilationTimeout;
 	}
 
-	public void setCompilationTimeoutMinutes(long compilationTimeoutMinutes) {
-		this.compilationTimeoutMinutes = compilationTimeoutMinutes;
+	public void setCompilationTimeout(int compilationTimeout) {
+		this.compilationTimeout = compilationTimeout;
 	}
 
 	/**
@@ -155,10 +155,8 @@ public class MultiThreadedJspC extends JspC {
 			}
 
 			executor.shutdown();
-			log.info("executor shutdown");
-			log.info("awaiting termination: " + compilationTimeoutMinutes + "m");
-			boolean awaitTermination = executor.awaitTermination(compilationTimeoutMinutes, TimeUnit.MINUTES);
-			log.info("awaiting termination: " + awaitTermination);
+			log.debug("executor shutdown, awaiting termination: " + compilationTimeout+ "m");
+			executor.awaitTermination(compilationTimeout, TimeUnit.MINUTES);
 
 			if (errorCollector.size() > 0) {
 				throwBuildException(errorCollector);

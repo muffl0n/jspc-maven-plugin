@@ -109,6 +109,14 @@ public class JspCompilerImpl implements JspCompiler {
     public void setCompilerTargetVM(final String target) {
         jspc.setCompilerTargetVM(target);
     }
+    
+    public void setCompileThreads(int threads) {
+        jspc.setThreads(threads);
+    }
+
+    public void setCompilationTimeout(int timeout) {
+        jspc.setCompilationTimeout(timeout);
+    }
 
     public void compile(Iterable<File> jspFiles) throws Exception {
         final List<String> args = new ArrayList<String>();

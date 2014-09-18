@@ -208,6 +208,18 @@ abstract class CompilationMojoSupport extends AbstractMojo {
     @Parameter(defaultValue="true")
     boolean errorOnUseBeanInvalidClassAttribute;
 
+    /**
+     * Number of threads to compile with, default 10
+     */
+    @Parameter(defaultValue="10")
+    int compileThreads;
+    
+    /**
+     * maximum amount of time compilation can take or be killed in minutes 
+     */
+    @Parameter(defaultValue="5")
+    int compilationTimeout;
+    
     //
     // Components
     //
