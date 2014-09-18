@@ -62,4 +62,8 @@ public interface JspCompiler {
     void setCompilerTargetVM(String target);
 
     void compile(Iterable<File> jspFiles) throws Exception;
+    
+    void setCompileThreads(int threads);
+    
+    void setCompilationTimeout(int timeout);
 }
