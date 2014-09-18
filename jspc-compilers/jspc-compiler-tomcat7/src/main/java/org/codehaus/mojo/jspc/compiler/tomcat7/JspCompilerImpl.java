@@ -24,21 +24,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.jasper.JspC;
 import org.codehaus.mojo.jspc.compiler.JspCompiler;
 
 /**
- * JSP compiler for Tomcat 6.
+ * JSP compiler for Tomcat 7.
  *
  * @version $Id$
  */
 public class JspCompilerImpl implements JspCompiler {
-    private final JspC jspc;
-    private boolean showSuccess = false;
+    private final MultiThreadedJspC jspc;
+    private boolean showSuccess = true;
     private boolean listErrors = false;
     
     public JspCompilerImpl() {
-        jspc = new JspC();
+        jspc = new MultiThreadedJspC();
         jspc.setFailOnError(true);
     }
 
@@ -126,6 +125,7 @@ public class JspCompilerImpl implements JspCompiler {
             args.add(jspFile.getAbsolutePath());
         }
         
+        jspc.setThreads(Integer.getInteger("jspc.threads", 10));
         jspc.setArgs(args.toArray(new String[args.size()]));
 
         jspc.execute();
