@@ -133,7 +133,6 @@ public class JspCompilerImpl implements JspCompiler {
             args.add(jspFile.getAbsolutePath());
         }
         
-        jspc.setThreads(Integer.getInteger("jspc.threads", 10));
         jspc.setArgs(args.toArray(new String[args.size()]));
 
         jspc.execute();

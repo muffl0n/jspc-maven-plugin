@@ -326,6 +326,8 @@ abstract class CompilationMojoSupport extends AbstractMojo {
         jspCompiler.setErrorOnUseBeanInvalidClassAttribute(errorOnUseBeanInvalidClassAttribute);
         jspCompiler.setCompilerSourceVM(source);
         jspCompiler.setCompilerTargetVM(target);
+        jspCompiler.setCompileThreads(compileThreads);
+        jspCompiler.setCompilationTimeout(compilationTimeout);
         
         // Make directories if needed
         workingDirectory.mkdirs();
